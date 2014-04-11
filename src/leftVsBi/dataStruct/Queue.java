@@ -2,12 +2,29 @@ package leftVsBi.dataStruct;
 
 public interface Queue {
 	
+	/**
+	 * 
+	 * @return
+	 */
     public boolean isFull();
-     
+    
+    /**
+     * 
+     * @return
+     */
     public boolean isEmpty();
-     
+    
+    /**
+     * 
+     * @param obj
+     */
     public void push(Object obj);
-     
-    public Object pop() throws QueueEmptyException; 
+    
+    /**
+     * 
+     * @return
+     * @throws EmptyException
+     */
+    public Object pop() throws EmptyException; 
 
 }

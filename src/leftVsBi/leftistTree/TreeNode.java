@@ -1,26 +1,47 @@
 package leftVsBi.leftistTree;
 
-public class TreeNode<T> {
-	public TreeNode<T> leftChild;
-	public TreeNode<T> rightChild;
-	public T element;
+/**
+ * 
+ * @author terek
+ *
+ */
+public class TreeNode {
+	
+	public TreeNode leftChild;
+	public TreeNode rightChild;
+	public int element;
+	public int sValue;
 	
 	public TreeNode () {
+		
 		leftChild = null;
 		rightChild = null;
-		element = null;
+		element = 0;
+		sValue = 0;
+		
 	}
 	
-	public TreeNode (T theElement) {
+	public TreeNode (int theElement) {
+		
 		leftChild = null;
 		rightChild = null;
 		element = theElement;
+		sValue = 1;
+		
 	}
 	
-	public TreeNode (TreeNode<T> left, TreeNode<T> right, T theElement) {
+	public TreeNode (TreeNode left, TreeNode right, int theElement, int sVal) {
+		
 		leftChild = left;
 		rightChild = right;
 		element = theElement;
+		sValue = sVal;
+		
+	}
+	
+	@Override
+	public String toString() {
+		return " " + element;
 	}
 
 }

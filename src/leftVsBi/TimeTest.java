@@ -1,39 +1,30 @@
 package leftVsBi;
 
-import leftVsBi.dataStruct.CircularArrayQueue;
-import leftVsBi.dataStruct.Queue;
+import leftVsBi.leftistTree.LeftistTree;
+
 
 public class TimeTest {
 
 	public static void main(String[] args) {
-        Queue queue = new CircularArrayQueue(4);
-        
-        queue.push("A");
-        queue.push("B");
-        queue.push("C");
-        queue.push("D");
-        //queue.enqueue("E");
- //       System.out.println(queue.size());
-        System.out.println(queue.pop());
-        queue.push("E");
-        System.out.println(queue.pop());
-        queue.push("F");
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        queue.push("G");
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        queue.push("H");
-        System.out.println(queue.pop());
-        queue.push("I");
-        queue.push("J");
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        
-//        System.out.println(queue.size());
-
+		
+		LeftistTree t = new LeftistTree();
+		
+		int [] elements = {13, 4, 7};
+		
+		t.initialize(elements, 3);
+		
+		t.pop();
+		t.push(2);
+		t.push(11);
+		t.push(8);
+		t.pop();
+		t.push(1);
+		t.push(10);
+		t.push(5);
+		t.pop();
+		
+		t.print();
+		
 	}
 
 }
