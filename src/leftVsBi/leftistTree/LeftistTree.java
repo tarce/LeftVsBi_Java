@@ -9,7 +9,7 @@ import leftVsBi.dataStruct.*;
  */
 public class LeftistTree {
 	
-	private TreeNode root;
+	private Node root;
 	private int treeSize;
 	
 	/**
@@ -32,18 +32,18 @@ public class LeftistTree {
 
 		// put all the elements in the queue
 		for (int i = 0; i <= size - 1; i++) {
-			q.push(new TreeNode( elements[i] ));
+			q.push(new Node( elements[i] ));
 		}
 
 		// pop 2 trees from the queue and meld them
 		// then push the result back on queue
 		// continue till done
-		TreeNode first, second;
+		Node first, second;
 		for (int i = 1; i <= size; i++) {
 			
 			// get first tree node
 			try {
-				first = (TreeNode) q.pop();
+				first = (Node) q.pop();
 			}
 			catch (EmptyException e) {
 				first = null;
@@ -51,7 +51,7 @@ public class LeftistTree {
 			
 			// get second tree node
 			try {
-				second = (TreeNode) q.pop();
+				second = (Node) q.pop();
 			}
 			catch (EmptyException e) {
 				second = null;
@@ -64,7 +64,7 @@ public class LeftistTree {
 
 		// set the root if the tree is not empty
 		if (treeSize > 0)
-			root = (TreeNode) q.pop();
+			root = (Node) q.pop();
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class LeftistTree {
 	 * @param second
 	 * @return
 	 */
-	private TreeNode meld (TreeNode first, TreeNode second) {
+	private Node meld (Node first, Node second) {
 		
 		// cases where one tree or the other is empty
 		if(first == null)
@@ -85,7 +85,7 @@ public class LeftistTree {
 		
 		// set first to be the min of the two trees
 		if(first.element > second.element) {  
-			TreeNode temp = first;
+			Node temp = first;
 			first = second;
 			second = temp;
 		}
@@ -105,7 +105,7 @@ public class LeftistTree {
 			
 			// swap the children if right child has larger sValue
 			if(first.leftChild.sValue < first.rightChild.sValue) {
-				TreeNode temp = first.leftChild;
+				Node temp = first.leftChild;
 				first.leftChild = first.rightChild;
 				first.rightChild = temp;
 			}
@@ -124,7 +124,7 @@ public class LeftistTree {
 	 * @param element
 	 */
 	public void push (int element) {
-		root = meld(root, new TreeNode (element));
+		root = meld(root, new Node (element));
 	}
 	
 	/**
@@ -133,7 +133,7 @@ public class LeftistTree {
 	public void pop() {
 		
 		if (root != null) {
-			TreeNode right = root.rightChild;
+			Node right = root.rightChild;
 			root = root.leftChild;
 			root = meld (root, right);
 			treeSize--;
@@ -152,7 +152,7 @@ public class LeftistTree {
 		int nodesCurrentLevel = 1;
 		int nodesNextLevel = 0;
 		CircularQueue q = new CircularQueue();
-		TreeNode temp = root;
+		Node temp = root;
 
 		while (temp != null) {
 			System.out.print(temp);
@@ -168,7 +168,7 @@ public class LeftistTree {
 			}
 
 			// get next node to visit
-			try {temp = (TreeNode) q.pop();}
+			try {temp = (Node) q.pop();}
 			catch (EmptyException e) {return;}
 
 			nodesCurrentLevel--;

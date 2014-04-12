@@ -18,7 +18,7 @@ public class TimeTest {
 			
 			LeftistTree tree = new LeftistTree ();
 			BufferedReader reader = null;
-			System.out.println("Starting leftist tree mode...");
+			// System.out.println("Starting leftist tree mode...");
 			File file = new File (args[1]);
 			
 			try {
@@ -29,19 +29,19 @@ public class TimeTest {
 			}
 			
 			String line;
-		    try {
-		    	while ((line = reader.readLine()) != null) {
+			try {
+				while ((line = reader.readLine()) != null) {
 					
 					StringTokenizer st = new StringTokenizer(line);
 					String op = st.nextToken();
 					
 					if ( op.equals("I") ) {
 						int value = Integer.parseInt( st.nextToken() );
-						System.out.println( "Inserting " + value + "...");
+						// System.out.println( "Inserting " + value + "...");
 						tree.push(value);
 					}
 					else if ( op.equals("D") ) {
-						System.out.println( "Deleting min..." );
+						// System.out.println( "Deleting min..." );
 						try {
 							tree.pop();
 						}
