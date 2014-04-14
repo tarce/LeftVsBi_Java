@@ -50,8 +50,9 @@ public class BinomialHeap {
 			// if there are no children (only top level list)
 			else {
 				
-				// combine the new top level trees
+				// combine the top level trees
 				if (min != min.sibling) {
+					min.sibling.sibling = min.sibling;
 					min->copy(min->sibling);
 					pairWiseCombine();
 				}
