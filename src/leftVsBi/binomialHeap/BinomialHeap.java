@@ -45,6 +45,32 @@ public class BinomialHeap {
 			// if there are children
 			if (temp != null) {
 				
+				// find the smallest child
+				Node start = temp;
+				Node curSmallest = temp;
+				Node current = temp;
+				while (temp.sibling != start) {
+					cout << "Entering loop." << endl;
+					//find smallest element in child list
+					if (tempChild->sibling->element < curSmallest->element) {
+						curSmallest = start->sibling;
+					}
+					start = start->sibling;
+				}
+
+				// meld the new tree with the other top level trees and combine
+				if (min != min->sibling) {
+					min->copy(min->sibling); //copy back trick
+					meld(curSmallest);
+					pairWiseCombine();
+				}
+				// only one top level, so combine the new top level trees
+				else {
+					min = curSmallest;
+					pairWiseCombine();
+				}
+			}
+				
 			}
 			
 			// if there are no children (only top level list)
