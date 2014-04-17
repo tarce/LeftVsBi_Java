@@ -25,8 +25,12 @@ public class Node {
 		
 	}
 	
-	public Node clone(){
-		return this;
+	public void copyBack(Node theNode){
+		child = theNode.sibling;
+		sibling = theNode.sibling;
+		element = theNode.element;
+		degree = theNode.degree;
+		
 	}
 	
 	@Override

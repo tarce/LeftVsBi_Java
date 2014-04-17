@@ -6,17 +6,28 @@ public class BinomialHeap {
 	
 	Node min;
 	int maxDegree;
+	Node [] treeTable;
 	
 	public BinomialHeap() {
 		
+		min = null;
+		maxDegree = 14;
+		treeTable = new Node[maxDegree];
+		
 	}
 	
-	public BinomialHeap( int maxDegree ) {
+	public BinomialHeap( int theMaxDegree ) {
+		
+		min = null;
+		maxDegree = theMaxDegree;
+		treeTable = new Node[maxDegree];
 		
 	}
 	
 	private boolean isEmpty() {
+		
 		return min == null;
+		
 	}
 	
 	public void push ( int element ) {
@@ -56,22 +67,57 @@ public class BinomialHeap {
 	public void removeMin() {
 		
 		// if heap doesn't exist
-		if (isEmpty()) {
-			throw new EmptyException();
-		}
+		if (isEmpty()) {throw new EmptyException();}
 		
 		// if heap exists
 		else {
-			if (min.sibling == min) {
-				min = null;
+			
+			if (min.sibling == min) {min = null;}
+			
+			else {
+				
+				Node childTree = min.child;
+				min.copyBack(min.sibling);
+				// NOTE that at this point min is 
+				// NOT necessarily the minimum
+				min = meld (min, childTree);
+				min = pairwiseCombine(min);
+			}
+			
+		}
+		
+	}
+	
+	private Node pairwiseCombine(Node start) {
+		//TODO copy back and delete from list
+		Node current = start.sibling;
+		boolean stop = false;
+		while (!stop) {
+			if (treeTable[current.degree] == null) {
+				treeTable[current.degree] = current;
 			}
 			else {
-				Node temp = min.sibling.sibling;
 				
-				min = min.child.clone();
-				min
+				if (current.element <= treeTable[current.degree].element)
+					current.child = 
+				
+			}
+			
+			// update current and determine if we should stop
+			current = current.sibling;
+			if (current == start) {
+				stop = true;
 			}
 		}
 		
+		if (treeTable[current.degree] == null) {
+			treeTable[current.degree] = current;
+		}
+		else {
+			
+		}
+		
+		
+
 	}
 }
