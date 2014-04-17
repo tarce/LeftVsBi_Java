@@ -25,6 +25,10 @@ public class Node {
 		
 	}
 	
+	public Node clone(){
+		return this;
+	}
+	
 	@Override
 	public String toString() {
 		return " " + element;

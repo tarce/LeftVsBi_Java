@@ -15,16 +15,15 @@ public class BinomialHeap {
 		
 	}
 	
+	private boolean isEmpty() {
+		return min == null;
+	}
+	
 	public void push ( int element ) {
 		
 		// add new node to top level list
 		if (min != null) {
-			Node temp = min.sibling;
-			min.sibling = new Node( element );
-			min.sibling.sibling = temp;
-			if (min.element > min.sibling.element) {
-				min = min.sibling;
-			}
+			min = meld ( min, new Node ( element ) );
 		}
 		
 		// otherwise, create top level list of just the new min
@@ -35,69 +34,44 @@ public class BinomialHeap {
 		
 	}
 	
-	public void removeMin() {
+	private Node meld (Node tree1, Node tree2) {
 		
-		// if heap exists
-		if (min != null) {
-			
-			Node temp = min.child;
-			
-			// if there are children
-			if (temp != null) {
-				
-				// find the smallest child
-				Node start = temp;
-				Node curSmallest = temp;
-				Node current = temp;
-				while (temp.sibling != start) {
-					cout << "Entering loop." << endl;
-					//find smallest element in child list
-					if (tempChild->sibling->element < curSmallest->element) {
-						curSmallest = start->sibling;
-					}
-					start = start->sibling;
-				}
-
-				// meld the new tree with the other top level trees and combine
-				if (min != min->sibling) {
-					min->copy(min->sibling); //copy back trick
-					meld(curSmallest);
-					pairWiseCombine();
-				}
-				// only one top level, so combine the new top level trees
-				else {
-					min = curSmallest;
-					pairWiseCombine();
-				}
-			}
-				
-			}
-			
-			// if there are no children (only top level list)
-			else {
-				
-				// combine the top level trees
-				if (min != min.sibling) {
-					min.sibling.sibling = min.sibling;
-					min->copy(min->sibling);
-					pairWiseCombine();
-				}
-				// no tree is left so set min back to null
-				else {
-					min = NULL;
-				}
-				
-				
-			}
-			
-			
-			
-			
+		Node result = null;
+		
+		Node temp = tree1.sibling;
+		tree1.sibling = tree2.sibling;
+		tree2.sibling = temp;
+		
+		if (tree1.element <= tree2.element) {
+			result = tree1;
 		}
 		else {
-			throw new EmptyException();
+			result = tree2;
 		}
+		
+		return result;
 		
 	}
 	
+	public void removeMin() {
+		
+		// if heap doesn't exist
+		if (isEmpty()) {
+			throw new EmptyException();
+		}
+		
+		// if heap exists
+		else {
+			if (min.sibling == min) {
+				min = null;
+			}
+			else {
+				Node temp = min.sibling.sibling;
+				
+				min = min.child.clone();
+				min
+			}
+		}
+		
+	}
 }
