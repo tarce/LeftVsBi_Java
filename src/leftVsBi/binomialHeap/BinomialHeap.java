@@ -69,10 +69,27 @@ public class BinomialHeap {
 		// if heap doesn't exist
 		if (isEmpty()) {throw new EmptyException();}
 		
-		// if heap exists
+		// if top level list exists
 		else {
 			
-			if (min.sibling == min) {min = null;}
+			// if only top level list exist
+			if (min.child == null) {
+				
+				// case where there is only one node in the to level list
+				if (min.sibling == min) {min = null;}
+				
+				else {
+					
+				}
+				
+			}
+			// if children exists
+			else {
+				
+			}
+			
+			
+			
 			
 			else {
 				
@@ -88,6 +105,11 @@ public class BinomialHeap {
 		
 	}
 	
+	/**
+	 * 
+	 * @param start
+	 * @return
+	 */
 	private Node pairwiseCombine(Node start) {
 		//TODO copy back and delete from list
 		Node current = start.sibling;
