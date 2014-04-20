@@ -70,35 +70,49 @@ public class BinomialHeap {
 		if (isEmpty()) {throw new EmptyException();}
 		
 		// if top level list exists
-		else {
+		else {			
 			
 			// if only top level list exist
-			if (min.child == null) {
+			if (min.child == null) {			
 				
 				// case where there is only one node in the to level list
-				if (min.sibling == min) {min = null;}
+				if (min.sibling == min) {min = null;}		
 				
+				// case where there is more than one node in the top level list
 				else {
+					
+					min.copyBack(min.sibling);
+					// NOTE that at this point min is 
+					// NOT necessarily the minimum
+					min = pairwiseCombine(min);
 					
 				}
 				
 			}
-			// if children exists
-			else {
+			
+			// if children exists (hence, 1 or more trees exist)
+			else {	
 				
-			}
-			
-			
-			
-			
-			else {
+				// case where there is only one node (tree) in the top level list
+				if (min.sibling == min) {
+					
+					min = min.child;
+					min = pairwiseCombine(min);
+					
+				}	
 				
-				Node childTree = min.child;
-				min.copyBack(min.sibling);
-				// NOTE that at this point min is 
-				// NOT necessarily the minimum
-				min = meld (min, childTree);
-				min = pairwiseCombine(min);
+				// case where there is more than one node (tree) in the top level list
+				else {
+					
+					Node childTree = min.child;
+					min.copyBack(min.sibling);
+					// NOTE that at this point min is 
+					// NOT necessarily the minimum
+					min = meld (min, childTree);
+					min = pairwiseCombine(min);
+					
+				}
+				
 			}
 			
 		}
