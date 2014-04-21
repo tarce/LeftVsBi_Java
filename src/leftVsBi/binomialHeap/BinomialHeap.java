@@ -140,14 +140,21 @@ public class BinomialHeap {
 			// if the tree is in the table, make a new tree
 			else {
 				
+				// make new tree of new degree and place back in table
 				if (current.element <= treeTable[current.degree].element) {
-					current.child = 
+					current.child = treeTable[current.degree];
+					treeTable[current.degree] = null;
+					current.degree++;
+					treeTable[current.degree] = current;	
 				}
 				else {
-					
+					Node temp = treeTable[current.degree];
+					temp.child = meld (temp.child, current);
+					treeTable[current.degree] = null;
+					temp.degree++;
+					treeTable[temp.degree] = temp;
 				}
-
-				
+	
 			}
 			
 			// update current and determine if we should stop
