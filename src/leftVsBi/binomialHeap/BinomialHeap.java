@@ -129,18 +129,28 @@ public class BinomialHeap {
 		Node current = start.sibling;
 		boolean stop = false;
 		while (!stop) {
+			
+			// if the tree is not in the table, put it in the table
 			if (treeTable[current.degree] == null) {
 				treeTable[current.degree] = current;
+				current = current.sibling;
+				treeTable[current.degree].sibling = null;
 			}
+			
+			// if the tree is in the table, make a new tree
 			else {
 				
-				if (current.element <= treeTable[current.degree].element)
+				if (current.element <= treeTable[current.degree].element) {
 					current.child = 
+				}
+				else {
+					
+				}
+
 				
 			}
 			
 			// update current and determine if we should stop
-			current = current.sibling;
 			if (current == start) {
 				stop = true;
 			}
