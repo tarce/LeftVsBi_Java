@@ -163,12 +163,32 @@ public class BinomialHeap {
 			}
 		}
 		
-		if (treeTable[current.degree] == null) {
-			treeTable[current.degree] = current;
+		Node newTree = new Node();
+		min = newTree;
+		
+		int i = 0;
+		// find first tree and set to min
+		while (i <= maxDegree) {
+			if (treeTable[i] != null) {
+				min = treeTable[i];
+				break;
+			}		
 		}
-		else {
-			
+		
+		while (i <= maxDegree) {
+			if (treeTable[i] != null) {
+				min = treeTable[i];
+				break;
+			}		
 		}
+		
+		for (Node n: treeTable) {		
+			if (n != null) {
+				newTree.sibling = n;
+				newTree = n;
+			}
+		}
+
 		
 		
 
